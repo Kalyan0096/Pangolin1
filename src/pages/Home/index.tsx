@@ -61,7 +61,7 @@ const Home = () => {
       <HomeTopBanner>
         <HomeTopBannerContent>
           <BannerRow1>
-            <BannerHeading>One-Stop</BannerHeading>
+            <BannerHeading>One</BannerHeading>
             <BannerHeading>Decentralized Trading</BannerHeading>
             <BannerHeading>On Avalanche</BannerHeading>
             <ConnectWalletBtn onClick={toggleWalletModal}>Connect Wallet</ConnectWalletBtn>
