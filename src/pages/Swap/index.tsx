@@ -3,6 +3,7 @@ import React, { useCallback, useContext, useEffect, useMemo, useState } from 're
 import { ArrowDown } from 'react-feather'
 import ReactGA from 'react-ga'
 import { Text } from 'rebass'
+import Settings from '../../components/Settings/index'
 import PelicanOpenLogo from '../../assets/Logo_Exports/Illustration/Pelican-Gullar-Open.png'
 import PelicanCloseLogo from '../../assets/Logo_Exports/Illustration/Pelican-Gullar-Closed.png'
 import styled, { ThemeContext } from 'styled-components'
@@ -41,10 +42,12 @@ import { useExpertModeManager, useUserSlippageTolerance } from '../../state/user
 import {
   PeliconCloseFlipImage,
   PeliconOpenImage,
-  SwapBannerTextHead,
-  SwapBannerTextHolder,
-  SwapBannerTextTag,
-  SwapTopBanner
+  SettingHolder,
+  Span,
+  BannerTextHead,
+  BannerTextHolder,
+  BannerTextTag,
+  TopBanner
 } from './styled'
 import { LinkStyledButton, TYPE } from '../../theme'
 import { maxAmountSpend } from '../../utils/maxAmountSpend'
@@ -57,6 +60,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useIsSelectedAEBToken, useSelectedTokenList } from '../../state/lists/hooks'
 import { DeprecatedWarning } from '../../components/Warning'
 import { isTokenOnList } from '../../utils'
+import { Link } from 'react-router-dom'
 
 const TopText = styled.span`
   margin-bottom: 8px;
@@ -319,14 +323,22 @@ export default function Swap() {
           <DeprecatedWarning />
         </WarningWrapper>
       )}
-      <SwapTopBanner>
+      <TopBanner>
         <PeliconOpenImage src={PelicanOpenLogo} />
-        <SwapBannerTextHolder>
-          <SwapBannerTextHead>Trade</SwapBannerTextHead>
-          <SwapBannerTextTag>Home {'<'} Trade</SwapBannerTextTag>
-        </SwapBannerTextHolder>
+        <BannerTextHolder>
+          <BannerTextHead>Trade</BannerTextHead>
+          <BannerTextTag>
+            <Link style={{ color: 'inherit', textDecoration: 'none' }} to="/">
+              Home
+            </Link>
+            <Span> {'>'} </Span>
+            <Link style={{ color: 'inherit', textDecoration: 'none' }} to="/swap">
+              Trade
+            </Link>
+          </BannerTextTag>
+        </BannerTextHolder>
         <PeliconCloseFlipImage src={PelicanCloseLogo} />
-      </SwapTopBanner>
+      </TopBanner>
       <TopText>
         <Trans i18nKey="swapPage.velox">
           Set a limit order on
@@ -353,6 +365,9 @@ export default function Swap() {
           />
 
           <AutoColumn gap={'md'}>
+            <SettingHolder>
+              <Settings />
+            </SettingHolder>
             <CurrencyInputPanel
               label={
                 independentField === Field.OUTPUT && !showWrap && trade
@@ -399,7 +414,6 @@ export default function Swap() {
               otherCurrency={currencies[Field.INPUT]}
               id="swap-currency-output"
             />
-
             {recipient !== null && !showWrap ? (
               <>
                 <AutoRow justify="space-between" style={{ padding: '0 1rem' }}>
@@ -413,7 +427,6 @@ export default function Swap() {
                 <AddressInputPanel id="recipient" value={recipient} onChange={onChangeRecipient} />
               </>
             ) : null}
-
             {showWrap ? null : (
               <Card padding={'.25rem .75rem 0 .75rem'} borderRadius={'20px'}>
                 <AutoColumn gap="4px">

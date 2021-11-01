@@ -18,9 +18,26 @@ export const ConnectWalletBtn = styled.button`
   font-weight: 400;
   margin-top: 1rem;
 `
+export const ConnectedWalletBtn = styled.button`
+  font-size: 20px;
+  width: 60%;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 10px;
+  background-color: white;
+  background-color: ${({ theme }) => theme.bg1};
+  border: solid 2px rgba(245, 88, 39, 0.8);
+  color: lightgray;
+  color: ${({ theme }) => theme.bg5};
+  cursor: crossair;
+  font-weight: 400;
+  margin-top: 1rem;
+`
+
 export const HomeTopBanner = styled.div`
   height: 70vh;
   background-color: rgba(240, 240, 240, 0.96);
+  background: ${({ theme }) => theme.bg1};
   width: 95vw;
   border-radius: 4rem;
   margin-bottom: 30px;
@@ -109,14 +126,6 @@ export const Td = styled.td`
   padding: 1rem;
   font-weight: 500;
   text-align: center;
-  &:first-child {
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-  }
-  &:last-child {
-    border-bottom-right-radius: 10px;
-    border-top-right-radius: 10px;
-  }
 `
 
 export const Tbody = styled.tbody``
